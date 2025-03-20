@@ -50,7 +50,6 @@ public class PNJ : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q) && active == true)
             {
-                text.enabled=false;
                 text.text = "";
                 active = false;
                 panel.SetActive(true);

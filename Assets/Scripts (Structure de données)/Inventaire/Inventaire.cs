@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using DG;
 using DG.Tweening;
 using Unity.VisualScripting;
+using System.Data.SqlTypes;
 
 
 public class Inventaire : MonoBehaviour
@@ -27,6 +28,16 @@ public class Inventaire : MonoBehaviour
     public bool finish = true;
 
     public Sprite caseVide;
+
+    public GameObject panelMoney;
+    public TextMeshProUGUI money;
+    public int argent;
+
+    void Start()
+    {
+        argent = 50;
+    }
+
 
     //Récupérez la liste des items 
     public List<Item> getListeItems()
@@ -88,6 +99,7 @@ public class Inventaire : MonoBehaviour
     }
     void Update()
     {
+        money.text=argent.ToString();
         if (Input.GetKeyDown(KeyCode.E) && listeItems.Count!=0)
         {
             RemoveItem(listeItems[swap.Value]);

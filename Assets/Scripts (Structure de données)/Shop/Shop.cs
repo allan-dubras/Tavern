@@ -14,10 +14,26 @@ public class Shop : MonoBehaviour
     [SerializeField]
     private Vector3[] posDesItemsPossable;
 
+    //Pages
+    public GameObject page1;
+    public GameObject page2;
+    public GameObject buttondroite;
+    public GameObject buttongauche;
+
     [SerializeField]
     private GameObject[] items;
 
+    //Argent
+    [SerializeField]
+    private TextMeshProUGUI money;
     public bool triggerActive;
+
+    public int arg;
+
+    [SerializeField]
+    private GameObject Player;
+
+
 
     void Start()
     {
@@ -33,6 +49,9 @@ public class Shop : MonoBehaviour
     //Shop
 
     //Faire un historique d'achat (pile)
+
+
+    //Gestion Menu / Interaction
     private void OnTriggerEnter(Collider other)
     {
         triggerActive = true;
@@ -54,13 +73,15 @@ public class Shop : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.O))
             {
-                Time.timeScale = 0f;  
+                arg = Player.GetComponent<Inventaire>().argent;
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
 
+                Player.GetComponent<Inventaire>().panelMoney.SetActive(false);
+                shop.SetActive(true);
                 text.enabled=false;
                 barreIventaire.SetActive(false);
-                shop.SetActive(true);
+                money.text =  arg.ToString();
             }
         }
     }

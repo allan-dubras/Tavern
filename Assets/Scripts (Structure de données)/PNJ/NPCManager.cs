@@ -28,6 +28,7 @@ public class NPCManager : MonoBehaviour
 
     public GameObject posbase;
 
+
     public GameObject nouvelleObjet;
 
     private Vector3 rot = new Vector3(0,180,0);

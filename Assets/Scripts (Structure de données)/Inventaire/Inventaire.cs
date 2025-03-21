@@ -100,10 +100,13 @@ public class Inventaire : MonoBehaviour
     void Update()
     {
         money.text=argent.ToString();
-        if (Input.GetKeyDown(KeyCode.E) && listeItems.Count!=0)
+        if (Input.GetKeyDown(KeyCode.E) && listeItems.Count != 0)
         {
             RemoveItem(listeItems[swap.Value]);
             swap = null;
+        }
+        else {
+            Debug.Log("a");
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {

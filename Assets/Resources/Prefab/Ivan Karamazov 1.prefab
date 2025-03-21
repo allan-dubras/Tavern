@@ -112,8 +112,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.84000003, y: 1.4279573, z: 1.111074}
-  m_Center: {x: 0.060000025, y: 0.20760188, z: 0.39757165}
+  m_Size: {x: 1.1, y: 1.4279573, z: 1.5}
+  m_Center: {x: -0.22, y: 0.20760188, z: 0.5}
 --- !u!114 &3986212761393979449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,9 +129,13 @@ MonoBehaviour:
   text: {fileID: 0}
   panel: {fileID: 0}
   img: {fileID: 0}
+  NPCManager: {fileID: 0}
+  sortieNPC: {fileID: 0}
   stock: {fileID: 0}
-  win: {fileID: 0}
-  wrong: {fileID: 0}
+  Joueur: {fileID: 0}
+  bloc: {fileID: 0}
+  active: 0
+  triggerActive: 0
 --- !u!54 &3246804694299772257
 Rigidbody:
   m_ObjectHideFlags: 0

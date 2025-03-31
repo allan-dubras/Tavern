@@ -12,6 +12,7 @@ public class PNJ : MonoBehaviour
     public TextMeshProUGUI text;
     public GameObject panel;
     public Image img;
+    public TextMeshProUGUI textUi;
 
     public NPCManager NPCManager;
     public GameObject sortieNPC;
@@ -25,7 +26,7 @@ public class PNJ : MonoBehaviour
 
     void Start()
     {
-
+        textUi = GameObject.Find("TextUi").GetComponent<TextMeshProUGUI>();
         active = true;
         sortieNPC = sortieNPC = GameObject.Find("Sortie");
     }
@@ -40,10 +41,13 @@ public class PNJ : MonoBehaviour
         if (other.GetComponent<Item>() != null && other.GetComponent<Item>().nom == stock.GetComponent<Item>().nom)
         {
             other.gameObject.SetActive(false);
+            Destroy(this.GetComponent<Collider>());
+            text.text = "";
+            textUi.text = "";
+            Joueur.GetComponent<Inventaire>().argent+=other.GetComponent<Item>().Money;
             panel.SetActive(false);
             GameObject.Find("NPCManager").GetComponent<NPCManager>().nextNPC = true;
             this.GetComponent<TargetNavMesh>().goal = sortieNPC;
-            Destroy(this.GetComponent<Collider>());
             StartCoroutine(wait());
         }
     }
@@ -72,6 +76,7 @@ public class PNJ : MonoBehaviour
                 GameObject objectrandom = listobjet[randomisee];
                 stock = listobjet[randomisee];
                 img.sprite = objectrandom.GetComponent<Item>().icone;
+                textUi.text= objectrandom.GetComponent<Item>().nom;
             }
         }
     }

@@ -13,6 +13,10 @@ public class Shop : MonoBehaviour
     //Génération des items
     [SerializeField]
     private Vector3[] posDesItemsPossable;
+    [SerializeField]
+    private GameObject[] items;
+
+    List<Queue<GameObject>> Stock;
 
     //Pages
     public GameObject page1;
@@ -20,8 +24,6 @@ public class Shop : MonoBehaviour
     public GameObject buttondroite;
     public GameObject buttongauche;
 
-    [SerializeField]
-    private GameObject[] items;
 
     //Argent
     [SerializeField]
@@ -37,16 +39,46 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
+        Stock = new List<Queue<GameObject>>();
         text.enabled = false;
         for (int i = 0; i < 9; i++) 
         {
             posDesItemsPossable[i] = items[i].transform.position;
         }
+        for (int i = 0; i < 9; i++)
+        {
+            Queue<GameObject> Create = new Queue<GameObject>();
+            Stock.Add(Create);
+            Create.Enqueue(items[i]);
+            
+        }
+
+
     }
 
 
 
     //Shop
+    public void Shopping(GameObject itemname)
+    {
+       GameObject newobjet = Instantiate(itemname);
+        // Item 1
+        String[] nom = itemname.name.Split(" ");
+        int indice=Int32.Parse(nom[1]);
+        int compte = Stock[indice - 1].Count;
+        if (compte == 0)
+        {
+            //position 
+            newobjet.transform.position = posDesItemsPossable[indice - 1];
+        }
+        if (compte > 0) 
+        {
+            newobjet.transform.position = posDesItemsPossable[indice - 1];
+            newobjet.transform.position = newobjet.transform.position + new Vector3(compte*2,0,0);
+
+        }
+        Stock[indice-1].Enqueue(newobjet);
+    }
 
     //Faire un historique d'achat (pile)
 
@@ -85,4 +117,7 @@ public class Shop : MonoBehaviour
             }
         }
     }
+
+
+
 }

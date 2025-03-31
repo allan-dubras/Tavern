@@ -4,14 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum ItemType
-{
-    WEAPON,
-    ARMOR,
-    SPELL,
-    POTION,
-    OTHER
-}
+
 
 
 public class Item : MonoBehaviour
@@ -19,7 +12,9 @@ public class Item : MonoBehaviour
     // id pour trouver l'item avec une valeur absolu
     private int id;
     [SerializeField]
-    public string nom = "NYI";
+    public string nom = "";
+    [SerializeField]
+    public string type = "";
     [SerializeField]
     private string description = "NYI";
     [SerializeField]
@@ -28,10 +23,11 @@ public class Item : MonoBehaviour
     public Sprite icone;
     [SerializeField]
     public int nombre;
+    [SerializeField]
+    public int Money;
 
 
 
-    private ItemType type = ItemType.OTHER;
 
     private Image Uicase;
 
@@ -53,7 +49,8 @@ public class Item : MonoBehaviour
     }
     public void dropItem(Vector3 pos, Vector3 dir)
     {
-        this.gameObject.transform.position = pos+dir*1.5f;
+        Vector3 posY = new Vector3(pos.x, pos.y+0.5f, pos.z);
+        this.gameObject.transform.position = posY+dir*1.5f;
         this.gameObject.SetActive(true);
         Debug.Log("Je dépose cet item " + gameObject.name + " depuis le script Item");
     }

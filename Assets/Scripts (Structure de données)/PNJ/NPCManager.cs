@@ -27,7 +27,7 @@ public class NPCManager : MonoBehaviour
     public GameObject player;
 
     public GameObject posbase;
-
+    public GameObject sortie;
 
     public GameObject nouvelleObjet;
 

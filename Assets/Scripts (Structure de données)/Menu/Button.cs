@@ -7,6 +7,7 @@ public class Button : MonoBehaviour
 {
     public Shop shop;
     public Inventaire inventaire;
+    public Recette Rec;
     public void ExitButton()
     {
         Cursor.visible = false;
@@ -33,5 +34,10 @@ public class Button : MonoBehaviour
     public void Buy() 
     {
 
+    }
+    public void Recettclose() 
+    {
+        Rec.Recettpanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
